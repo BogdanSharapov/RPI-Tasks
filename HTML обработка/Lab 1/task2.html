@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Поисковые формы для популярных поисковых систем">
+    <meta name="keywords" content="поиск, Яндекс, Гугл, Рамблер, Апорт, файлсёрч">
+    <meta name="author" content="Ваше Имя">
+    <title>Поисковые формы</title>
+</head>
+<body>
+    <h1>Поисковые формы</h1>
+
+    <form action="https://www.yandex.ru/search/" method="get">
+        <label for="yandex-search">Яндекс:</label>
+        <input type="text" id="yandex-search" name="text" required>
+        <input type="submit" value="Поиск">
+    </form>
+
+    <form action="https://www.rambler.ru/search" method="get">
+        <label for="rambler-search">Рамблер:</label>
+        <input type="text" id="rambler-search" name="query" required>
+        <input type="submit" value="Поиск">
+    </form>
+
+    <form action="https://www.aport.ru/search/" method="get">
+        <label for="aport-search">Апорт:</label>
+        <input type="text" id="aport-search" name="q" required>
+        <input type="submit" value="Поиск">
+    </form>
+
+    <form action="https://www.google.com/search" method="get">
+        <label for="google-search">Гугл:</label>
+        <input type="text" id="google-search" name="q" required>
+        <input type="submit" value="Поиск">
+    </form>
+
+    <form action="https://www.filesearch.ru/search/" method="get">
+        <label for="filesearch-search">Файлсёрч:</label>
+        <input type="text" id="filesearch-search" name="q" required>
+        <input type="submit" value="Поиск">
+    </form>
+</body>
+</html>

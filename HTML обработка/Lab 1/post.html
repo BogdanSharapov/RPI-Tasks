@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Форма анкеты">
+    <title>Форма анкеты (POST)</title>
+</head>
+<body>
+    <h1>Анкета</h1>
+    <form action="http://127.0.0.1:5500" method="POST">
+        <!-- Фамилия -->
+        <label for="surname">Фамилия:</label>
+        <input type="text" id="surname" name="surname" value="Иванов"><br>
+
+        <!-- Имя -->
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" value="Иван"><br>
+
+        <!-- Отчество -->
+        <label for="middle_name">Отчество:</label>
+        <input type="text" id="middle_name" name="middle_name" value="Иванович"><br>
+
+        <!-- E-mail -->
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" value="ivanov@mail.com"><br>
+
+        <!-- Выбор страны -->
+        <label for="country">Выберите страну:</label>
+        <select id="country" name="country" required>
+            <option value="Россия">Россия</option>
+            <option value="США">США</option>
+            <option value="Канада">Канада</option>
+            <option value="Германия">Германия</option>
+            <option value="Франция">Франция</option>
+            <option value="Италия">Италия</option>
+            <option value="Испания">Испания</option>
+            <option value="Япония">Япония</option>
+            <option value="Китай">Китай</option>
+            <option value="Индия">Индия</option>
+        </select><br>
+
+        <!-- Выбор города -->
+        <label>Выберите город:</label><br>
+        <input type="radio" id="city1" name="city" value="Москва" required>
+        <label for="city1">Москва</label><br>
+        <input type="radio" id="city2" name="city" value="Санкт-Петербург">
+        <label for="city2">Санкт-Петербург</label><br>
+        <input type="radio" id="city3" name="city" value="Новосибирск">
+        <label for="city3">Новосибирск</label><br>
+        <input type="radio" id="city4" name="city" value="Екатеринбург">
+        <label for="city4">Екатеринбург</label><br>
+        <input type="radio" id="city5" name="city" value="Казань">
+        <label for="city5">Казань</label><br>
+
+        <!-- Выбор языка -->
+        <label>Выберите языки:</label><br>
+        <input type="checkbox" id="lang1" name="language" value="Русский">
+        <label for="lang1">Русский</label><br>
+        <input type="checkbox" id="lang2" name="language" value="Английский">
+        <label for="lang2">Английский</label><br>
+        <input type="checkbox" id="lang3" name="language" value="Французский">
+        <label for="lang3">Французский</label><br>
+        <input type="checkbox" id="lang4" name="language" value="Немецкий">
+        <label for="lang4">Немецкий</label><br>
+        <input type="checkbox" id="lang5" name="language" value="Испанский">
+        <label for="lang5">Испанский</label><br>
+
+        <!-- Выбор профессий -->
+        <label for="profession">Выберите профессию:</label>
+        <select id="profession" name="profession[]" multiple required>
+            <option value="Программист">Программист</option>
+            <option value="Менеджер">Менеджер</option>
+            <option value="Дизайнер">Дизайнер</option>
+            <option value="Маркетолог">Маркетолог</option>
+            <option value="Учитель">Учитель</option>
+            <option value="Врач">Врач</option>
+            <option value="Юрист">Юрист</option>
+            <option value="Инженер">Инженер</option>
+            <option value="Психолог">Психолог</option>
+            <option value="Экономист">Экономист</option>
+        </select><br>
+
+        <!-- Пароль -->
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <!-- Дополнительная информация -->
+        <label for="additional_info">Дополнительная информация:</label><br>
+        <textarea id="additional_info" name="additional_info" rows="4" cols="50"></textarea><br>
+
+        <!-- Скрытое поле -->
+        <input type="hidden" name="student" value="Bogdan"><br>
+
+        <!-- Кнопки -->
+        <button type="submit">Отправить</button>
+        <button type="reset">Очистить</button>
+    </form>
+    <a href="get.html">Форма анкеты (GET)</a>
+</body>
+</html>

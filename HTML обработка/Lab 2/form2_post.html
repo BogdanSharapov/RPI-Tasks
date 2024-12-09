@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Форма анкеты для сайта (POST).">
+    <title>Форма анкеты (POST)</title>
+    <script>
+        function validateForm(event) {
+            let valid = true; // Переменная для проверки валидности формы
+            const form = event.target; // Получаем форму
+
+            // Проверка фамилии
+            if (form.surname.value.trim() === '') {
+                alert('Пожалуйста, введите фамилию.');
+                valid = false;
+            }
+            // Проверка имени
+            if (form.name.value.trim() === '') {
+                alert('Пожалуйста, введите имя.');
+                valid = false;
+            }
+            // Проверка отчества
+            if (form.middle_name.value.trim() === '') {
+                alert('Пожалуйста, введите отчество.');
+                valid = false;
+            }
+            // Проверка E-mail
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (form.email.value.trim() === '' || !emailPattern.test(form.email.value)) {
+                alert('Пожалуйста, введите корректный E-mail.');
+                valid = false;
+            }
+            // Проверка выбора страны
+            if (form.country.value === '') {
+                alert('Пожалуйста, выберите страну.');
+                valid = false;
+            }
+            // Проверка выбора города
+            if (!form.city.value) {
+                alert('Пожалуйста, выберите город.');
+                valid = false;
+            }
+            // Проверка выбора языка
+            if (![...form.language].some((checkbox) => checkbox.checked)) {
+                alert('Пожалуйста, выберите хотя бы один язык.');
+                valid = false;
+            }
+            // Проверка выбора профессии
+            if ([...form.profession].filter(option => option.selected).length === 0) {
+                alert('Пожалуйста, выберите хотя бы одну профессию.');
+                valid = false;
+            }
+            // Проверка пароля
+            if (form.password.value.trim() === '') {
+                alert('Пожалуйста, введите пароль.');
+                valid = false;
+            }
+            // Проверка дополнительной информации
+            if (form.additional_info.value.trim() === '') {
+                alert('Пожалуйста, введите дополнительную информацию.');
+                valid = false;
+            }
+
+            // Если форма валидна, открываем ее в новом окне
+            if (valid) {
+                openFormWindow(event);
+            }
+        }
+
+        function openFormWindow(event) {
+            const width = 800; // Ширина окна
+            const height = 600; // Высота окна
+            const left = 100; // Отступ слева
+            const top = 100; // Отступ сверху
+            const params = `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=no,status=yes,scrollbars=yes`;
+            const form = event.target; 
+            const formData = new FormData(form);
+            const queryString = new URLSearchParams(formData).toString(); 
+            window.open(form.action + '?' + queryString, '_blank', params); // Открываем новое окно
+        }
+    </script>
+</head>
+<body>
+    <h1>Форма анкеты</h1>
+    <form action="http://127.0.0.1:5500" method="POST" onsubmit="validateForm(event)">
+        <label for="surname">Фамилия:</label>
+        <input type="text" id="surname" name="surname" value="Иванов"><br><br>
+
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" value="Иван"><br><br>
+
+        <label for="middle_name">Отчество:</label>
+        <input type="text" id="middle_name" name="middle_name" value="Иванович"><br><br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" value="ivanov@example.com"><br><br>
+
+        <label for="country">Выберите страну:</label>
+        <select id="country" name="country" required>
+            <option value="" disabled selected>Выберите страну</option>
+            <option value="Россия">Россия</option>
+            <option value="США">США</option>
+            <option value="Канада">Канада</option>
+            <option value="Германия">Германия</option>
+            <option value="Франция">Франция</option>
+            <option value="Япония">Япония</option>
+            <option value="Италия">Италия</option>
+            <option value="Испания">Испания</option>
+            <option value="Австралия">Австралия</option>
+            <option value="Бразилия">Бразилия</option>
+        </select><br><br>
+
+        <fieldset>
+            <legend>Выберите город:</legend>
+            <label><input type="radio" name="city" value="Москва" required>Москва</label><br>
+            <label><input type="radio" name="city" value="Нижний Новгород">Нижний Новгород</label><br>
+            <label><input type="radio" name="city" value="Санкт-Петербург">Санкт-Петербург</label><br>
+            <label><input type="radio" name="city" value="Казань">Казань</label><br>
+            <label><input type="radio" name="city" value="Екатеринбург">Екатеринбург</label><br>
+        </fieldset><br>
+
+        <fieldset>
+            <legend>Выберите язык:</legend>
+            <label><input type="checkbox" name="language" value="Русский">Русский</label><br>
+            <label><input type="checkbox" name="language" value="Английский">Английский</label><br>
+            <label><input type="checkbox" name="language" value="Немецкий">Немецкий</label><br>
+            <label><input type="checkbox" name="language" value="Французский">Французский</label><br>
+            <label><input type="checkbox" name="language" value="Испанский">Испанский</label><br>
+        </fieldset><br>
+
+        <label for="profession">Выберите профессию:</label>
+        <select id="profession" name="profession[]" multiple>
+            <option value="Инженер">Инженер</option>
+            <option value="Врач">Врач</option>
+            <option value="Учитель">Учитель</option>
+            <option value="Дизайнер">Дизайнер</option>
+            <option value="Программист">Программист</option>
+            <option value="Менеджер">Менеджер</option>
+            <option value="Маркетолог">Маркетолог</option>
+            <option value="Юрист">Юрист</option>
+            <option value="Архитектор">Архитектор</option>
+            <option value="Бухгалтер">Бухгалтер</option>
+        </select><br><br>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="additional_info">Дополнительная информация:</label><br>
+        <textarea id="additional_info" name="additional_info"></textarea><br><br>
+
+        <input type="hidden" name="student" value="Ваше_имя">
+
+        <input type="submit" value="Отправить">
+        <input type="reset" value="Очистить">
+    </form>
+
+    <hr>
+    <a href="form_get.html">Перейти на форму с методом GET</a>
+</body>
+</html>
